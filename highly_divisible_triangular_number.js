@@ -85,15 +85,13 @@ const findDivisorsWithPrimes = num => {
 
 
 const triangleFactorFive = () => {
-  let n = 1;
+  let n = 2;
   let numOfFactors = findDivisorsWithPrimes(getNthTriangleNum(n));
-  // while(numOfFactors < 501){
-  //   n++;
-  //   numOfFactors = findDivisorsWithPrimes(getNthTriangleNum(n));
-  //   console.log(numOfFactors);
-    
-  // }
-  return numOfFactors;
+  while(numOfFactors < 501){
+    n++;
+    numOfFactors = findDivisorsWithPrimes(getNthTriangleNum(n));
+  }
+  return n;
 }
 
 console.log(triangleFactorFive())

@@ -30,7 +30,6 @@ const getNthTriangleNum = n => {
   return sum;
 }
 
-// Sieve approach
 const primesLessThan10000 = () => {
   const array = [...Array(10000).fill('true')];
   for(let i = 2; i < 100; i++){
@@ -49,19 +48,41 @@ const primesLessThan10000 = () => {
   .filter(n => n !== undefined);
 }
 
+const isPrime = num => {
+  for(let i = 2; i < num; i++){
+    if(num % i === 0) return false;
+  }
+  return num > 1;
+}
+
+const findDivisorsWithPrimes = num => {
+  const primesArray = primesLessThan10000();
+  let currentValue = num;
+  let index = 0;
+  let primes = [];
+  let done = false;
+
+  while(!done){
+    if(isPrime(currentValue)){
+      primes.push(currentValue);
+      done = true;
+    } 
+    else if(currentValue % primesArray[index] === 0){
+      primes.push(primesArray[index]);
+      currentValue = currentValue / primesArray[index];
+    }
+    else index++;
+  }
+
+  primes.reduce((n, i) => {
+    if(!)
+  }, {})
+}
+
 
 const triangleFactorFive = () => {
   let n = 1;
-  while(getFactors(getNthTriangleNum(n)).length <= 500){
-    n++;
-  }
-  return n;
+  
 }
 
-console.log(primesLessThan10000())
-// console.log(triangleFactorFive())
-// console.timeEnd('start')
-
-const arrayy = ['true', 'false', 'true'];
-// console.log(arrayy.map((n, i) => {
-//   if(n === 'true') return n = i }).filter(n => n !== undefined))
+console.log(findDivisorsWithPrimes(12))

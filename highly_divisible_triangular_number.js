@@ -74,15 +74,13 @@ const findDivisorsWithPrimes = num => {
     else index++;
   }
 
-  let hashMap = {};
-  primes.forEach(num => {
-    if(!hashMap[num]) hashMap[num] = 1;
-    else hashMap[num]++;
-  });
-
-  return Object.values(hashMap).reduce((acc, curr) => {
-    return acc * (curr + 1)
-  }, 1);
+  return Object.values(
+    primes.reduce((acc, curr) => {
+      if(!acc[curr]) acc[curr] = 1;
+      else acc[curr]++;
+      return acc;
+    }, {}))
+    .reduce((acc, curr) => acc * (curr + 1), 1);
 }
 
 
@@ -91,4 +89,4 @@ const triangleFactorFive = () => {
   
 }
 
-console.log(findDivisorsWithPrimes(10))
+console.log(findDivisorsWithPrimes(21))

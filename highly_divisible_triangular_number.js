@@ -11,3 +11,57 @@
 // We can see that 28 is the first triangle number to have over five divisors.
 // What is the value of the first triangle number to have over five hundred divisors?
 
+// Brute force approach
+const getFactors = num => {
+  const factors = [];
+  for(let i = 1; i <= num; i++){
+    if(num % i === 0){
+      factors.push(i)
+    }
+  }
+  return factors;
+}
+
+const getNthTriangleNum = n => {
+  let sum = 0;
+  for(let i = 1; i <= n; i++){
+    sum += i;
+  }
+  return sum;
+}
+
+// Sieve approach
+const primesLessThan10000 = () => {
+  const array = [...Array(10000).fill('true')];
+  for(let i = 2; i < 100; i++){
+    if(array[i]){
+      for(let j = i * i; j < array.length; j += i){
+        array[j] = false;
+      }
+    }
+  }
+  return array.map((n, i) => {
+    if(n){
+      return i;
+    }
+  })
+  .splice(2, array.length - 1)
+  .filter(n => n !== undefined);
+}
+
+
+const triangleFactorFive = () => {
+  let n = 1;
+  while(getFactors(getNthTriangleNum(n)).length <= 500){
+    n++;
+  }
+  return n;
+}
+
+console.log(primesLessThan10000())
+// console.log(triangleFactorFive())
+// console.timeEnd('start')
+
+const arrayy = ['true', 'false', 'true'];
+// console.log(arrayy.map((n, i) => {
+//   if(n === 'true') return n = i }).filter(n => n !== undefined))

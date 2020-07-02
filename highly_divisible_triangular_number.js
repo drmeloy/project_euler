@@ -90,8 +90,6 @@ const triangleFactorFive = () => {
   while(numOfFactors < 501){
     n++;
     numOfFactors = findDivisorsWithPrimes(getNthTriangleNum(n));
-    console.log(numOfFactors);
-    
   }
   return getNthTriangleNum(n);
 }

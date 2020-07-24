@@ -23,19 +23,21 @@ const recurse = (num, memo = {}) => {
 const collatz = () => {
   const memo = {};
   let largestChain = 0;
+  let startingNumber;
 
-  for(let i = 2; i < 1000; i++){
+  for(let i = 2; i < 1000000; i++){
     let currentChain;
     if(memo[i]) currentChain = memo[i];
     else currentChain = recurse(i, memo);
-    if(currentChain > largestChain) largestChain = currentChain;
-    else continue;
+    if(currentChain > largestChain){
+      largestChain = currentChain;
+      startingNumber = i;
+    } 
   }
-    console.log(memo);
-    return largestChain;
+    return startingNumber;
 };
 
 let testMemo = {};
-console.log(recurse(703, testMemo));
-console.log(testMemo);
-// console.log(collatz());
+// console.log(recurse(703, testMemo));
+// console.log(testMemo);
+console.log(collatz());

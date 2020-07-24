@@ -12,12 +12,12 @@ const recurse = (num, memo = {}) => {
   if(num <= 1) return 1;
   let next;
   if(num % 2 === 0) {
-    next = num  / 2;
+    next = num / 2;
   }
   else {
     next = num * 3 + 1;
   }
-  return next % 2 === 0 ? recurse(next) + recurse(next / 2) : recurse(next) + recurse(next * 3 + 1);
+  return memo[num] = 1 + recurse(next, memo)
 }
 
 const collatz = () => {
@@ -36,6 +36,6 @@ const collatz = () => {
     return largestChain;
 };
 
-let testMemo = {1: 1};
-console.log(recurse(4));
+let testMemo = {};
+console.log(recurse(3, testMemo));
 console.log(testMemo);

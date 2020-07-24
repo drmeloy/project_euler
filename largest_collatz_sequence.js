@@ -10,14 +10,8 @@
 const recurse = (num, memo = {}) => {
   if(memo[num]) return memo[num];
   if(num <= 1) return 1;
-  let next;
-  if(num % 2 === 0) {
-    next = num / 2;
-  }
-  else {
-    next = num * 3 + 1;
-  }
-  return memo[num] = 1 + recurse(next, memo)
+  if(num % 2 === 0) return memo[num] = 1 + recurse(num / 2, memo);
+  else return memo[num] = 1 + recurse(num * 3 + 1, memo);
 }
 
 const collatz = () => {
@@ -37,7 +31,4 @@ const collatz = () => {
     return startingNumber;
 };
 
-let testMemo = {};
-// console.log(recurse(703, testMemo));
-// console.log(testMemo);
 console.log(collatz());

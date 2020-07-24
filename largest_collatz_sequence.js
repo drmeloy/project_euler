@@ -27,15 +27,14 @@ const collatz = () => {
   for(let i = 2; i < 1000000; i++){
     let currentChain;
     if(memo[i]) currentChain = memo[i];
-    else {
-      recurse(i, 1, memo);
-      currentChain = memo[i];
-    }
-  }
+    else currentChain = recurse(i, memo);
     if(currentChain > largestChain) largestChain = currentChain;
+  }
+    console.log(memo);
     return largestChain;
 };
 
 let testMemo = {};
-console.log(recurse(3, testMemo));
-console.log(testMemo);
+console.log(recurse(162709, testMemo));
+// console.log(testMemo);
+// console.log(collatz());

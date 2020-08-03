@@ -25,4 +25,5 @@ const exponentNumAsString = (baseNum, exponent) => {
   return total;
 }
 
-console.log(exponentNumAsString(2, 1000).split('').reduce((acc, curr) => +acc + +curr));
+// console.log(exponentNumAsString(2, 1000).split('').reduce((acc, curr) => +acc + +curr));
+// console.log(exponentNumAsString(2, 1000));

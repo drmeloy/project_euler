@@ -25,14 +25,14 @@ const numDict = {
   19: 8,
   20: 6,
   30: 6,
-  40: 6,
+  40: 5,
   50: 5,
   60: 5,
   70: 7,
   80: 6,
   90: 6,
-  000: 7,
-  0000: 8
+  'hundred': 7,
+  'thousand': 8
 }
 
 const numberLetterCounter = limit => {
@@ -44,13 +44,14 @@ const numberLetterCounter = limit => {
       const numAsString = i.toString();
       if(numAsString.length === 2) total += numDict[+(numAsString.charAt(0) + '0')] + numDict[+numAsString.charAt(1)];
       else if(numAsString.length === 3){
-        if(+numAsString.substr(1, 2) < 20) total += numDict[+numAsString.charAt(0)] + numDict[000] + 3 + numDict[+numAsString.substr(1, 2)];
-        else total += numDict[+numAsString.charAt(0)] + numDict[000] + 3 + numDict[+(numAsString.charAt(1) + '0')] + numDict[+numAsString.charAt(2)];
+        if(numAsString.substr(1, 2) === '00') total += numDict[+numAsString.charAt(0)] + numDict['hundred'];
+        else if(+numAsString.substr(1, 2) < 20) total += numDict[+numAsString.charAt(0)] + numDict['hundred'] + 3 + numDict[+numAsString.substr(1, 2)];
+        else total += numDict[+numAsString.charAt(0)] + numDict['hundred'] + 3 + numDict[+(numAsString.charAt(1) + '0')] + numDict[+numAsString.charAt(2)];
       }
-      else total += numDict[1] + numDict[0000];
+      else total += numDict[1] + numDict['thousand'];
     }
   }
   return total;
 }
 
-console.log(numberLetterCounter(12));
+console.log(numberLetterCounter(1000));
